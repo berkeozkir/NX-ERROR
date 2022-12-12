@@ -1,0 +1,615 @@
+###############################################################################
+# L4T BSP Information:
+# R32 , REVISION: 5.1
+###############################################################################
+# Target Board Information:
+# Name: jetson-xavier-nx-en715, Board Family: t186ref, SoC: Tegra 194, 
+# OpMode: production, Boot Authentication: NS, 
+# Disk encryption: disabled ,
+###############################################################################
+copying soft_fuses(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-soft-fuses-l4t.cfg)... done.
+./tegraflash.py --chip 0x19 --applet "/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/mb1_t194_prod.bin" --skipuid --soft_fuses tegra194-mb1-soft-fuses-l4t.cfg --bins "mb2_applet nvtboot_applet_t194.bin" --cmd "dump eeprom boardinfo cvm.bin;reboot recovery" 
+Welcome to Tegra Flash
+version 1.0.0
+Type ? or help for help and q or quit to exit
+Use ! to execute system commands
+ 
+[   0.0070 ] Generating RCM messages
+[   0.0087 ] tegrahost_v2 --chip 0x19 0 --magicid MB1B --appendsigheader /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/mb1_t194_prod.bin zerosbk
+[   0.0093 ] Header already present for /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/mb1_t194_prod.bin
+[   0.0145 ] 
+[   0.0164 ] tegrasign_v2 --key None --getmode mode.txt
+[   0.0170 ] Assuming zero filled SBK key
+[   0.0206 ] 
+[   0.0212 ] tegrasign_v2 --key None --file /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/mb1_t194_prod_sigheader.bin --offset 2960 --length 1136 --pubkeyhash pub_key.key
+[   0.0218 ] Assuming zero filled SBK key
+[   0.0224 ] 
+[   0.0231 ] tegrahost_v2 --chip 0x19 0 --updatesigheader /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/mb1_t194_prod_sigheader.bin /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/mb1_t194_prod_sigheader.hash zerosbk
+[   0.0262 ] 
+[   0.0285 ] tegrabct_v2 --chip 0x19 0 --sfuse tegra194-mb1-soft-fuses-l4t.cfg.pdf sfuse.bin
+[   0.0328 ] 
+[   0.0335 ] tegrarcm_v2 --listrcm rcm_list.xml --chip 0x19 0 --sfuses sfuse.bin --download rcm /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/mb1_t194_prod_sigheader.bin 0 0
+[   0.0341 ] RCM 0 is saved as rcm_0.rcm
+[   0.0368 ] RCM 1 is saved as rcm_1.rcm
+[   0.0368 ] RCM 2 is saved as rcm_2.rcm
+[   0.0368 ] List of rcm files are saved in rcm_list.xml
+[   0.0368 ] 
+[   0.0368 ] Signing RCM messages
+[   0.0376 ] tegrasign_v2 --key None --list rcm_list.xml --pubkeyhash pub_key.key --getmontgomeryvalues montgomery.bin
+[   0.0382 ] Assuming zero filled SBK key
+[   0.0387 ] 
+[   0.0387 ] Copying signature to RCM mesages
+[   0.0395 ] tegrarcm_v2 --chip 0x19 0 --updatesig rcm_list_signed.xml
+[   0.0405 ] 
+[   0.0406 ] Boot Rom communication
+[   0.0413 ] tegrarcm_v2 --chip 0x19 0 --rcm rcm_list_signed.xml --skipuid
+[   0.0419 ] RCM version 0X190001
+[   0.0680 ] Boot Rom communication completed
+[   1.0862 ] 
+[   2.0932 ] tegrarcm_v2 --isapplet
+[   2.0961 ] Applet version 01.00.0000
+[   2.1279 ] 
+[   2.1315 ] tegrarcm_v2 --ismb2
+[   2.1839 ] 
+[   2.1886 ] tegrahost_v2 --chip 0x19 --align nvtboot_applet_t194.bin
+[   2.1920 ] 
+[   2.1951 ] tegrahost_v2 --chip 0x19 0 --magicid PLDT --appendsigheader nvtboot_applet_t194.bin zerosbk
+[   2.1978 ] adding BCH for nvtboot_applet_t194.bin
+[   2.2080 ] 
+[   2.2145 ] tegrasign_v2 --key None --list nvtboot_applet_t194_sigheader.bin_list.xml --pubkeyhash pub_key.key
+[   2.2168 ] Assuming zero filled SBK key
+[   2.2198 ] 
+[   2.2233 ] tegrahost_v2 --chip 0x19 0 --updatesigheader nvtboot_applet_t194_sigheader.bin.encrypt nvtboot_applet_t194_sigheader.bin.hash zerosbk
+[   2.2308 ] 
+[   2.2334 ] tegrarcm_v2 --download mb2 nvtboot_applet_t194_sigheader.bin.encrypt
+[   2.2358 ] Applet version 01.00.0000
+[   2.3123 ] Sending mb2
+[   2.3126 ] [................................................] 100%
+[   2.3289 ] 
+[   2.3324 ] tegrarcm_v2 --boot recovery
+[   2.3351 ] Applet version 01.00.0000
+[   2.4167 ] 
+[   3.4201 ] tegrarcm_v2 --isapplet
+[   3.4962 ] 
+[   3.4997 ] tegrarcm_v2 --ismb2
+[   3.5022 ] MB2 Applet version 01.00.0000
+[   3.5469 ] 
+[   3.5504 ] tegrarcm_v2 --ismb2
+[   3.5529 ] MB2 Applet version 01.00.0000
+[   3.5992 ] 
+[   3.6026 ] Retrieving board information
+[   3.6057 ] tegrarcm_v2 --oem platformdetails chip chip_info.bin
+[   3.6086 ] MB2 Applet version 01.00.0000
+[   3.6455 ] Saved platform info in chip_info.bin
+[   3.6506 ] Chip minor revision: 2
+[   3.6509 ] Bootrom revision: 0xf
+[   3.6510 ] Ram code: 0x2
+[   3.6510 ] Chip sku: 0xde
+[   3.6510 ] Chip Sample: non es
+[   3.6510 ] 
+[   3.6517 ] Retrieving EEPROM data
+[   3.6518 ] tegrarcm_v2 --oem platformdetails eeprom cvm /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/cvm.bin
+[   3.6548 ] MB2 Applet version 01.00.0000
+[   3.6894 ] Saved platform info in /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/cvm.bin
+[   3.7244 ] 
+[   3.7246 ] Rebooting to recovery mode
+[   3.7277 ] tegrarcm_v2 --ismb2
+[   3.7303 ] MB2 Applet version 01.00.0000
+[   3.8039 ] 
+[   3.8040 ] Rebooting to recovery mode
+[   3.8072 ] tegrarcm_v2 --reboot recovery
+[   3.8099 ] MB2 Applet version 01.00.0000
+[   3.8615 ] 
+Board ID(3668) version(301) sku(0003) revision(B.0)
+Copy /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/kernel/dtb/tegra194-p3668-all-p3509-0000.dtb to /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/kernel/dtb/tegra194-p3668-all-p3509-0000.dtb.rec
+Using UUID a244bee2-7024-4304-8fec-14dd242ef099 for mounting root APP_ext partition.
+copying bctfile(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-bct-memcfg-p3668-0001-a00.cfg)... done.
+copying bctfile1(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-memcfg-sw-override.cfg)... done.
+copying device_config(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/t186ref/BCT/tegra19x-mb1-bct-device-qspi-p3668.cfg)... done.
+copying misc_cold_boot_config(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-bct-misc-l4t.cfg)... done.
+copying misc_config(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-bct-misc-flash.cfg)... done.
+copying pinmux_config(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/t186ref/BCT/tegra19x-mb1-pinmux-p3668-a01.cfg)... done.
+copying gpioint_config(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-bct-gpioint-p3668-0001-a00.cfg)... done.
+copying pmic_config(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-bct-pmic-p3668-0001-a00.cfg)... done.
+copying pmc_config(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/t186ref/BCT/tegra19x-mb1-padvoltage-p3668-a01.cfg)... done.
+copying prod_config(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/t186ref/BCT/tegra19x-mb1-prod-p3668-0001-a00.cfg)... done.
+copying scr_config(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-bct-scr-cbb-mini-p3668.cfg)... done.
+copying scr_cold_boot_config(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-bct-scr-cbb-mini-p3668.cfg)... done.
+copying bootrom_config(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-bct-reset-p3668-0001-a00.cfg)... done.
+copying dev_params(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-br-bct-qspi.cfg)... done.
+Existing bootloader(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/nvtboot_cpu_t194.bin) reused.
+copying initrd(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/l4t_initrd.img)... done.
+	populating kernel to rootfs... done.
+/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/tegraflash.py  --chip 0x19 --key  --cmd sign /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/rootfs/boot/Image
+Welcome to Tegra Flash
+version 1.0.0
+Type ? or help for help and q or quit to exit
+Use ! to execute system commands
+ 
+[   0.0165 ] Generating signature
+[   0.0196 ] tegrasign_v2 --key  --getmode mode.txt
+[   0.0213 ] Assuming zero filled SBK key
+[   0.0240 ] 
+[   0.0246 ] header_magic: 5614
+[   0.0271 ] tegrahost_v2 --chip 0x19 --align 1_Image
+[   0.0296 ] 
+[   0.0310 ] tegrahost_v2 --chip 0x19 0 --magicid DATA --appendsigheader 1_Image zerosbk
+[   0.0321 ] adding BCH for 1_Image
+[   1.0108 ] 
+[   1.0330 ] tegrasign_v2 --key  --list 1_Image_sigheader_list.xml --pubkeyhash pub_key.key
+[   1.0355 ] Assuming zero filled SBK key
+[   1.2161 ] 
+[   1.7994 ] tegrahost_v2 --chip 0x19 0 --updatesigheader 1_Image_sigheader.encrypt 1_Image_sigheader.hash zerosbk
+[   2.4355 ] 
+[   2.5483 ] Signed file: /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/Image_sigheader.encrypt
+l4t_sign_image.sh: Generate header for Image_sigheader.encrypt
+l4t_sign_image.sh: chip 0x19: add 0x20d6808 to offset  0x8 in sig file
+l4t_sign_image.sh: Generate 16-byte-size-aligned base file for Image_sigheader.encrypt
+l4t_sign_image.sh: the sign header is saved at /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/rootfs/boot/Image.sig
+done.
+	populating initrd to rootfs... done.
+/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/tegraflash.py  --chip 0x19 --key  --cmd sign /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/rootfs/boot/initrd
+Welcome to Tegra Flash
+version 1.0.0
+Type ? or help for help and q or quit to exit
+Use ! to execute system commands
+ 
+[   0.0201 ] Generating signature
+[   0.0230 ] tegrasign_v2 --key  --getmode mode.txt
+[   0.0244 ] Assuming zero filled SBK key
+[   0.0275 ] 
+[   0.0278 ] header_magic: 1f8b0800
+[   0.0300 ] tegrahost_v2 --chip 0x19 --align 1_initrd
+[   0.0325 ] 
+[   0.0337 ] tegrahost_v2 --chip 0x19 0 --magicid DATA --appendsigheader 1_initrd zerosbk
+[   0.0347 ] adding BCH for 1_initrd
+[   0.1862 ] 
+[   0.1882 ] tegrasign_v2 --key  --list 1_initrd_sigheader_list.xml --pubkeyhash pub_key.key
+[   0.1888 ] Assuming zero filled SBK key
+[   0.1958 ] 
+[   0.1968 ] tegrahost_v2 --chip 0x19 0 --updatesigheader 1_initrd_sigheader.encrypt 1_initrd_sigheader.hash zerosbk
+[   0.2822 ] 
+[   0.2872 ] Signed file: /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/initrd_sigheader.encrypt
+l4t_sign_image.sh: Generate header for initrd_sigheader.encrypt
+l4t_sign_image.sh: chip 0x19: add 0x6e6ce8 to offset  0x8 in sig file
+l4t_sign_image.sh: Generate 16-byte-size-aligned base file for initrd_sigheader.encrypt
+l4t_sign_image.sh: the sign header is saved at /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/rootfs/boot/initrd.sig
+done.
+	populating /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/kernel/dtb/tegra194-p3668-all-p3509-0000.dtb to rootfs... done.
+Making Boot image... done.
+/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/tegraflash.py  --chip 0x19 --key  --cmd sign boot.img
+Welcome to Tegra Flash
+version 1.0.0
+Type ? or help for help and q or quit to exit
+Use ! to execute system commands
+ 
+[   0.0006 ] Generating signature
+[   0.0028 ] tegrasign_v2 --key  --getmode mode.txt
+[   0.0040 ] Assuming zero filled SBK key
+[   0.0073 ] 
+[   0.0075 ] header_magic: 414e4452
+[   0.0097 ] tegrahost_v2 --chip 0x19 --align 1_boot.img
+[   0.0121 ] 
+[   0.0132 ] tegrahost_v2 --chip 0x19 0 --magicid DATA --appendsigheader 1_boot.img zerosbk
+[   0.0141 ] adding BCH for 1_boot.img
+[   1.6679 ] 
+[   1.6956 ] tegrasign_v2 --key  --list 1_boot_sigheader.img_list.xml --pubkeyhash pub_key.key
+[   1.6985 ] Assuming zero filled SBK key
+[   1.8651 ] 
+[   2.3431 ] tegrahost_v2 --chip 0x19 0 --updatesigheader 1_boot_sigheader.img.encrypt 1_boot_sigheader.img.hash zerosbk
+[   2.9499 ] 
+[   3.0408 ] Signed file: /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/temp_user_dir/boot_sigheader.img.encrypt
+l4t_sign_image.sh: Generate header for boot_sigheader.img.encrypt
+l4t_sign_image.sh: chip 0x19: add 0x27be800 to offset  0x8 in sig file
+l4t_sign_image.sh: Generate 16-byte-size-aligned base file for boot_sigheader.img.encrypt
+l4t_sign_image.sh: the signed file is /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/temp_user_dir/boot_sigheader.img.encrypt
+done.
+Making recovery ramdisk for recovery image...
+Re-generating recovery ramdisk for recovery image...
+~/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/ramdisk_tmp ~/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader ~/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra
+_BASE_KERNEL_VERSION=4.9.201-tegra
+~/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/ramdisk_tmp/lib ~/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/ramdisk_tmp ~/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader ~/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra
+Making Recovery image...
+copying recdtbfile(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/kernel/dtb/tegra194-p3668-all-p3509-0000.dtb.rec)... done.
+Existing sosfile(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/mb1_t194_prod.bin) reused.
+Existing tegraboot(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/nvtboot_t194.bin) reused.
+Existing cpu_bootloader(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/nvtboot_cpu_t194.bin) reused.
+Existing mb2blfile(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/nvtboot_recovery_t194.bin) reused.
+Existing mtspreboot(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/preboot_c10_prod_cr.bin) reused.
+Existing mcepreboot(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/mce_c10_prod_cr.bin) reused.
+Existing mtsproper(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/mts_c10_prod_cr.bin) reused.
+Existing mb1file(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/mb1_t194_prod.bin) reused.
+Existing bpffile(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/bpmp_t194.bin) reused.
+copying bpfdtbfile(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/t186ref/tegra194-a02-bpmp-p3668-a00.dtb)... done.
+Existing scefile(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/camera-rtcpu-sce.img) reused.
+Existing camerafw(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/camera-rtcpu-rce.img) reused.
+Existing spefile(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/spe_t194.bin) reused.
+Existing drameccfile(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/dram-ecc.bin) reused.
+Existing badpagefile(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/badpage.bin) reused.
+Existing wb0boot(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/warmboot_t194_prod.bin) reused.
+Existing tosfile(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/tos-trusty_t194.img) reused.
+Existing eksfile(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/eks.img) reused.
+copying soft_fuses(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-soft-fuses-l4t.cfg)... done.
+copying dtbfile(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/kernel/dtb/tegra194-p3668-all-p3509-0000.dtb)... done.
+Copying nv_boot_control.conf to rootfs
+/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/tegraflash.py  --chip 0x19 --key  --cmd sign kernel_tegra194-p3668-all-p3509-0000.dtb
+Welcome to Tegra Flash
+version 1.0.0
+Type ? or help for help and q or quit to exit
+Use ! to execute system commands
+ 
+[   0.0005 ] Generating signature
+[   0.0021 ] tegrasign_v2 --key  --getmode mode.txt
+[   0.0027 ] Assuming zero filled SBK key
+[   0.0059 ] 
+[   0.0060 ] header_magic: d00dfeed
+[   0.0078 ] tegrahost_v2 --chip 0x19 --align 1_kernel_tegra194-p3668-all-p3509-0000.dtb
+[   0.0098 ] 
+[   0.0106 ] tegrahost_v2 --chip 0x19 0 --magicid DATA --appendsigheader 1_kernel_tegra194-p3668-all-p3509-0000.dtb zerosbk
+[   0.0113 ] adding BCH for 1_kernel_tegra194-p3668-all-p3509-0000.dtb
+[   0.0168 ] 
+[   0.0188 ] tegrasign_v2 --key  --list 1_kernel_tegra194-p3668-all-p3509-0000_sigheader.dtb_list.xml --pubkeyhash pub_key.key
+[   0.0195 ] Assuming zero filled SBK key
+[   0.0200 ] 
+[   0.0212 ] tegrahost_v2 --chip 0x19 0 --updatesigheader 1_kernel_tegra194-p3668-all-p3509-0000_sigheader.dtb.encrypt 1_kernel_tegra194-p3668-all-p3509-0000_sigheader.dtb.hash zerosbk
+[   0.0257 ] 
+[   0.0262 ] Signed file: /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/temp_user_dir/kernel_tegra194-p3668-all-p3509-0000_sigheader.dtb.encrypt
+l4t_sign_image.sh: Generate header for kernel_tegra194-p3668-all-p3509-0000_sigheader.dtb.encrypt
+l4t_sign_image.sh: chip 0x19: add 0x310bd to offset  0x8 in sig file
+l4t_sign_image.sh: Generate 16-byte-size-aligned base file for kernel_tegra194-p3668-all-p3509-0000_sigheader.dtb.encrypt
+l4t_sign_image.sh: the sign header is saved at kernel_tegra194-p3668-all-p3509-0000.dtb.sig
+done.
+/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/tegraflash.py  --chip 0x19 --key  --cmd sign kernel_tegra194-p3668-all-p3509-0000.dtb
+Welcome to Tegra Flash
+version 1.0.0
+Type ? or help for help and q or quit to exit
+Use ! to execute system commands
+ 
+[   0.0004 ] Generating signature
+[   0.0021 ] tegrasign_v2 --key  --getmode mode.txt
+[   0.0026 ] Assuming zero filled SBK key
+[   0.0060 ] 
+[   0.0061 ] header_magic: d00dfeed
+[   0.0077 ] tegrahost_v2 --chip 0x19 --align 1_kernel_tegra194-p3668-all-p3509-0000.dtb
+[   0.0097 ] 
+[   0.0104 ] tegrahost_v2 --chip 0x19 0 --magicid DATA --appendsigheader 1_kernel_tegra194-p3668-all-p3509-0000.dtb zerosbk
+[   0.0109 ] adding BCH for 1_kernel_tegra194-p3668-all-p3509-0000.dtb
+[   0.0152 ] 
+[   0.0168 ] tegrasign_v2 --key  --list 1_kernel_tegra194-p3668-all-p3509-0000_sigheader.dtb_list.xml --pubkeyhash pub_key.key
+[   0.0175 ] Assuming zero filled SBK key
+[   0.0179 ] 
+[   0.0190 ] tegrahost_v2 --chip 0x19 0 --updatesigheader 1_kernel_tegra194-p3668-all-p3509-0000_sigheader.dtb.encrypt 1_kernel_tegra194-p3668-all-p3509-0000_sigheader.dtb.hash zerosbk
+[   0.0218 ] 
+[   0.0221 ] Signed file: /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/temp_user_dir/kernel_tegra194-p3668-all-p3509-0000_sigheader.dtb.encrypt
+l4t_sign_image.sh: Generate header for kernel_tegra194-p3668-all-p3509-0000_sigheader.dtb.encrypt
+l4t_sign_image.sh: chip 0x19: add 0x310bd to offset  0x8 in sig file
+l4t_sign_image.sh: Generate 16-byte-size-aligned base file for kernel_tegra194-p3668-all-p3509-0000_sigheader.dtb.encrypt
+l4t_sign_image.sh: the signed file is /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/temp_user_dir/kernel_tegra194-p3668-all-p3509-0000_sigheader.dtb.encrypt
+done.
+generating system.img for booting... 
+Making system.img... 
+	populating rootfs from /tmp/tmp.knn4VJfVwe ... done.
+	populating /boot/extlinux/extlinux.conf ... done.
+	Sync'ing system.img ... done.
+	Converting RAW image to Sparse image... done.
+system.img built successfully. 
+Existing tbcfile(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/cboot_t194.bin) reused.
+copying tbcdtbfile(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/kernel/dtb/tegra194-p3668-all-p3509-0000.dtb)... done.
+copying cfgfile(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/t186ref/cfg/flash_l4t_t194_spi_emmc_p3668.xml) to flash.xml... done.
+Existing flasher(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/nvtboot_recovery_cpu_t194.bin) reused.
+Existing flashapp(/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/tegraflash.py) reused.
+./tegraflash.py --bl nvtboot_recovery_cpu_t194.bin --sdram_config tegra194-mb1-bct-memcfg-p3668-0001-a00.cfg,tegra194-memcfg-sw-override.cfg  --odmdata 0xB8190000 --applet mb1_t194_prod.bin --cmd "flash; reboot" --soft_fuses tegra194-mb1-soft-fuses-l4t.cfg  --cfg flash.xml --chip 0x19 --device_config tegra19x-mb1-bct-device-qspi-p3668.cfg --misc_cold_boot_config tegra194-mb1-bct-misc-l4t.cfg --misc_config tegra194-mb1-bct-misc-flash.cfg --pinmux_config tegra19x-mb1-pinmux-p3668-a01.cfg --gpioint_config tegra194-mb1-bct-gpioint-p3668-0001-a00.cfg --pmic_config tegra194-mb1-bct-pmic-p3668-0001-a00.cfg --pmc_config tegra19x-mb1-padvoltage-p3668-a01.cfg --prod_config tegra19x-mb1-prod-p3668-0001-a00.cfg --scr_config tegra194-mb1-bct-scr-cbb-mini-p3668.cfg --scr_cold_boot_config tegra194-mb1-bct-scr-cbb-mini-p3668.cfg --br_cmd_config tegra194-mb1-bct-reset-p3668-0001-a00.cfg --dev_params tegra194-br-bct-qspi.cfg  --bin "mb2_bootloader nvtboot_recovery_t194.bin; mts_preboot preboot_c10_prod_cr.bin; mts_mce mce_c10_prod_cr.bin; mts_proper mts_c10_prod_cr.bin; bpmp_fw bpmp_t194.bin; bpmp_fw_dtb tegra194-a02-bpmp-p3668-a00.dtb; spe_fw spe_t194.bin; tlk tos-trusty_t194.img; eks eks.img; bootloader_dtb tegra194-p3668-all-p3509-0000.dtb"   --trim_bpmp_dtb 
+saving flash command in /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/flashcmd.txt
+saving Windows flash command to /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/flash_win.bat
+*** Flashing target device started. ***
+Welcome to Tegra Flash
+version 1.0.0
+Type ? or help for help and q or quit to exit
+Use ! to execute system commands
+ 
+[   0.0022 ] tegrasign_v2 --key None --getmode mode.txt
+[   0.0032 ] Assuming zero filled SBK key
+[   0.0064 ] 
+[   0.0065 ] Generating RCM messages
+[   0.0083 ] tegrahost_v2 --chip 0x19 0 --magicid MB1B --appendsigheader mb1_t194_prod.bin zerosbk
+[   0.0091 ] Header already present for mb1_t194_prod.bin
+[   0.0151 ] 
+[   0.0161 ] tegrasign_v2 --key None --getmode mode.txt
+[   0.0169 ] Assuming zero filled SBK key
+[   0.0170 ] 
+[   0.0179 ] tegrasign_v2 --key None --file mb1_t194_prod_sigheader.bin --offset 2960 --length 1136 --pubkeyhash pub_key.key
+[   0.0186 ] Assuming zero filled SBK key
+[   0.0191 ] 
+[   0.0199 ] tegrahost_v2 --chip 0x19 0 --updatesigheader mb1_t194_prod_sigheader.bin mb1_t194_prod_sigheader.hash zerosbk
+[   0.0243 ] 
+[   0.0336 ] tegrabct_v2 --chip 0x19 0 --sfuse tegra194-mb1-soft-fuses-l4t.cfg sfuse.bin
+[   0.0384 ] 
+[   0.0414 ] tegrarcm_v2 --listrcm rcm_list.xml --chip 0x19 0 --sfuses sfuse.bin --download rcm mb1_t194_prod_sigheader.bin 0 0
+[   0.0432 ] RCM 0 is saved as rcm_0.rcm
+[   0.0516 ] RCM 1 is saved as rcm_1.rcm
+[   0.0518 ] RCM 2 is saved as rcm_2.rcm
+[   0.0518 ] List of rcm files are saved in rcm_list.xml
+[   0.0518 ] 
+[   0.0519 ] Signing RCM messages
+[   0.0541 ] tegrasign_v2 --key None --list rcm_list.xml --pubkeyhash pub_key.key --getmontgomeryvalues montgomery.bin
+[   0.0563 ] Assuming zero filled SBK key
+[   0.0582 ] 
+[   0.0582 ] Copying signature to RCM mesages
+[   0.0604 ] tegrarcm_v2 --chip 0x19 0 --updatesig rcm_list_signed.xml
+[   0.0637 ] 
+[   0.0638 ] Parsing partition layout
+[   0.0684 ] tegraparser_v2 --pt flash.xml.tmp
+[   0.0727 ] 
+[   0.0728 ] Creating list of images to be signed
+[   0.0749 ] tegrahost_v2 --chip 0x19 0 --partitionlayout flash.xml.bin --list images_list.xml zerosbk
+[   0.0768 ] MB1: Nvheader already present is mb1_t194_prod.bin
+[   0.0780 ] Header already present for mb1_t194_prod_sigheader.bin
+[   0.0791 ] MB1: Nvheader already present is mb1_t194_prod.bin
+[   0.0860 ] Header already present for mb1_t194_prod_sigheader.bin
+[   0.0868 ] adding BCH for spe_t194.bin
+[   0.0978 ] adding BCH for spe_t194.bin
+[   0.1006 ] adding BCH for nvtboot_t194.bin
+[   0.1042 ] adding BCH for nvtboot_t194.bin
+[   0.1085 ] Header already present for preboot_c10_prod_cr.bin
+[   0.1130 ] Header already present for preboot_c10_prod_cr.bin
+[   0.1132 ] Header already present for mce_c10_prod_cr.bin
+[   0.1179 ] Header already present for mce_c10_prod_cr.bin
+[   0.1194 ] adding BCH for mts_c10_prod_cr.bin
+[   0.1317 ] adding BCH for mts_c10_prod_cr.bin
+[   0.2365 ] Header already present for warmboot_t194_prod.bin
+[   0.3143 ] Header already present for warmboot_t194_prod.bin
+[   0.3168 ] adding BCH for cboot_t194.bin
+[   0.3364 ] adding BCH for cboot_t194.bin
+[   0.3505 ] adding BCH for tegra194-p3668-all-p3509-0000.dtb
+[   0.3683 ] adding BCH for tegra194-p3668-all-p3509-0000.dtb
+[   0.3720 ] adding BCH for tos-trusty_t194.img
+[   0.3787 ] adding BCH for tos-trusty_t194.img
+[   0.3876 ] adding BCH for eks.img
+[   0.3982 ] adding BCH for eks.img
+[   0.3982 ] adding BCH for adsp-fw.bin
+[   0.4029 ] adding BCH for adsp-fw.bin
+[   0.4043 ] adding BCH for camera-rtcpu-rce.img
+[   0.4069 ] adding BCH for camera-rtcpu-rce.img
+[   0.4121 ] adding BCH for bpmp_t194.bin
+[   0.4277 ] adding BCH for bpmp_t194.bin
+[   0.4480 ] adding BCH for tegra194-a02-bpmp-p3668-a00.dtb
+[   0.4838 ] adding BCH for tegra194-a02-bpmp-p3668-a00.dtb
+[   0.4884 ] adding BCH for boot.img
+[   0.5928 ] adding BCH for boot.img
+[   1.7456 ] adding BCH for kernel_tegra194-p3668-all-p3509-0000.dtb
+[   2.6854 ] adding BCH for kernel_tegra194-p3668-all-p3509-0000.dtb
+[   2.7026 ] adding BCH for recovery.img
+[   2.8465 ] adding BCH for tegra194-p3668-all-p3509-0000.dtb.rec
+[   3.9714 ] 
+[   3.9715 ] Filling MB1 storage info
+[   3.9715 ] Generating br-bct
+[   3.9812 ] Performing cfg overlay
+[   3.9813 ] ['tegra194-mb1-bct-memcfg-p3668-0001-a00.cfg', 'tegra194-memcfg-sw-override.cfg']
+[   3.9822 ] sw_memcfg_overlay.pl -c tegra194-mb1-bct-memcfg-p3668-0001-a00.cfg -s tegra194-memcfg-sw-override.cfg -o /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/25624/tmpi4s9jg7m1.cfg
+[   4.0717 ] 
+[   4.0718 ] Updating dev and MSS params in BR BCT
+[   4.0718 ] tegrabct_v2 --dev_param tegra194-br-bct-qspi.cfg --sdram /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/25624/tmpi4s9jg7m1.cfg --brbct br_bct.cfg --sfuse tegra194-mb1-soft-fuses-l4t.cfg --chip 0x19 0
+[   4.1052 ] 
+[   4.1052 ] Updating bl info
+[   4.1060 ] tegrabct_v2 --brbct br_bct_BR.bct --chip 0x19 0 --updateblinfo flash.xml.bin
+[   4.1100 ] 
+[   4.1100 ] Generating signatures
+[   4.1117 ] tegrasign_v2 --key None --list images_list.xml --pubkeyhash pub_key.key
+[   4.1122 ] Assuming zero filled SBK key
+[   4.9520 ] 
+[   4.9563 ] Generating br-bct
+[   4.9682 ] Performing cfg overlay
+[   4.9682 ] ['/home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/25624/tmpi4s9jg7m1.cfg']
+[   4.9682 ] Updating dev and MSS params in BR BCT
+[   4.9683 ] tegrabct_v2 --dev_param tegra194-br-bct-qspi.cfg --sdram /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/25624/tmpi4s9jg7m1.cfg --brbct br_bct.cfg --sfuse tegra194-mb1-soft-fuses-l4t.cfg --chip 0x19 0
+[   5.0079 ] 
+[   5.0080 ] Updating bl info
+[   5.0092 ] tegrabct_v2 --brbct br_bct_BR.bct --chip 0x19 0 --updateblinfo flash.xml.bin --updatesig images_list_signed.xml
+[   5.0169 ] 
+[   5.0170 ] Updating smd info
+[   5.0178 ] tegrabct_v2 --brbct br_bct_BR.bct --chip 0x19 --updatesmdinfo flash.xml.bin
+[   5.0186 ] 
+[   5.0186 ] Updating Odmdata
+[   5.0192 ] tegrabct_v2 --brbct br_bct_BR.bct --chip 0x19 0 --updatefields Odmdata =0xB8190000
+[   5.0199 ] 
+[   5.0200 ] Get Signed section of bct
+[   5.0206 ] tegrabct_v2 --brbct br_bct_BR.bct --chip 0x19 0 --listbct bct_list.xml
+[   5.0214 ] 
+[   5.0221 ] tegrasign_v2 --key None --list bct_list.xml --pubkeyhash pub_key.key --getmontgomeryvalues montgomery.bin
+[   5.0227 ] Assuming zero filled SBK key
+[   5.0233 ] 
+[   5.0233 ] Updating BCT with signature
+[   5.0241 ] tegrabct_v2 --brbct br_bct_BR.bct --chip 0x19 0 --updatesig bct_list_signed.xml
+[   5.0251 ] 
+[   5.0251 ] Generating coldboot mb1-bct
+[   5.0296 ] tegrabct_v2 --chip 0x19 0 --mb1bct mb1_cold_boot_bct.cfg --sdram /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/25624/tmpi4s9jg7m1.cfg --misc tegra194-mb1-bct-misc-l4t.cfg --scr tegra194-mb1-bct-scr-cbb-mini-p3668.cfg --pinmux tegra19x-mb1-pinmux-p3668-a01.cfg --pmc tegra19x-mb1-padvoltage-p3668-a01.cfg --pmic tegra194-mb1-bct-pmic-p3668-0001-a00.cfg --brcommand tegra194-mb1-bct-reset-p3668-0001-a00.cfg --prod tegra19x-mb1-prod-p3668-0001-a00.cfg --gpioint tegra194-mb1-bct-gpioint-p3668-0001-a00.cfg --device tegra19x-mb1-bct-device-qspi-p3668.cfg
+[   5.0305 ] MB1-BCT version: 0x1
+
+[   5.0309 ] Parsing config file :tegra19x-mb1-pinmux-p3668-a01.cfg 
+[   5.0311 ] Added Platform Config 0 data with size :- 2496
+
+[   5.0328 ] Parsing config file :tegra194-mb1-bct-scr-cbb-mini-p3668.cfg 
+[   5.0330 ] Added Platform Config 1 data with size :- 19640
+
+[   5.0449 ] Parsing config file :tegra19x-mb1-padvoltage-p3668-a01.cfg 
+[   5.0452 ] Added Platform Config 2 data with size :- 24
+
+[   5.0453 ] Parsing config file :tegra194-mb1-bct-pmic-p3668-0001-a00.cfg 
+[   5.0456 ] Added Platform Config 4 data with size :- 348
+
+[   5.0457 ] Parsing config file :tegra194-mb1-bct-reset-p3668-0001-a00.cfg 
+[   5.0460 ] Added Platform Config 3 data with size :- 92
+
+[   5.0462 ] Parsing config file :tegra19x-mb1-prod-p3668-0001-a00.cfg 
+[   5.0464 ] Added Platform Config 5 data with size :- 128
+
+[   5.0466 ] Parsing config file :tegra194-mb1-bct-gpioint-p3668-0001-a00.cfg 
+[   5.0470 ] Added Platform Config 7 data with size :- 392
+
+[   5.0478 ] Parsing config file :tegra19x-mb1-bct-device-qspi-p3668.cfg 
+[   5.0480 ] Added Platform Config 9 data with size :- 40
+[   5.0481 ] 
+[   5.0481 ] Updating mb1-bct with firmware information
+[   5.0491 ] tegrabct_v2 --chip 0x19 --mb1bct mb1_cold_boot_bct_MB1.bct --updatefwinfo flash.xml.bin
+[   5.0499 ] MB1-BCT version: 0x1
+[   5.0505 ] 
+[   5.0505 ] Updating mb1-bct with storage information
+[   5.0514 ] tegrabct_v2 --chip 0x19 --mb1bct mb1_cold_boot_bct_MB1.bct --updatestorageinfo flash.xml.bin
+[   5.0521 ] MB1-BCT version: 0x1
+[   5.0525 ] 
+[   5.0542 ] tegrahost_v2 --chip 0x19 --align mb1_cold_boot_bct_MB1.bct
+[   5.0567 ] 
+[   5.0574 ] tegrahost_v2 --chip 0x19 0 --magicid MBCT --appendsigheader mb1_cold_boot_bct_MB1.bct zerosbk
+[   5.0579 ] adding BCH for mb1_cold_boot_bct_MB1.bct
+[   5.0585 ] 
+[   5.0593 ] tegrasign_v2 --key None --list mb1_cold_boot_bct_MB1_sigheader.bct_list.xml --pubkeyhash pub_key.key
+[   5.0598 ] Assuming zero filled SBK key
+[   5.0600 ] 
+[   5.0622 ] tegrahost_v2 --chip 0x19 0 --updatesigheader mb1_cold_boot_bct_MB1_sigheader.bct.encrypt mb1_cold_boot_bct_MB1_sigheader.bct.hash zerosbk
+[   5.0633 ] 
+[   5.0633 ] Generating recovery mb1-bct
+[   5.0641 ] tegrabct_v2 --chip 0x19 0 --mb1bct mb1_bct.cfg --sdram /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/25624/tmpi4s9jg7m1.cfg --misc tegra194-mb1-bct-misc-flash.cfg --scr tegra194-mb1-bct-scr-cbb-mini-p3668.cfg --pinmux tegra19x-mb1-pinmux-p3668-a01.cfg --pmc tegra19x-mb1-padvoltage-p3668-a01.cfg --pmic tegra194-mb1-bct-pmic-p3668-0001-a00.cfg --brcommand tegra194-mb1-bct-reset-p3668-0001-a00.cfg --prod tegra19x-mb1-prod-p3668-0001-a00.cfg --gpioint tegra194-mb1-bct-gpioint-p3668-0001-a00.cfg --device tegra19x-mb1-bct-device-qspi-p3668.cfg
+[   5.0648 ] MB1-BCT version: 0x1
+
+[   5.0650 ] Parsing config file :tegra19x-mb1-pinmux-p3668-a01.cfg 
+[   5.0653 ] Added Platform Config 0 data with size :- 2496
+
+[   5.0661 ] Parsing config file :tegra194-mb1-bct-scr-cbb-mini-p3668.cfg 
+[   5.0663 ] Added Platform Config 1 data with size :- 19640
+
+[   5.0757 ] Parsing config file :tegra19x-mb1-padvoltage-p3668-a01.cfg 
+[   5.0759 ] Added Platform Config 2 data with size :- 24
+
+[   5.0761 ] Parsing config file :tegra194-mb1-bct-pmic-p3668-0001-a00.cfg 
+[   5.0763 ] Added Platform Config 4 data with size :- 348
+
+[   5.0764 ] Parsing config file :tegra194-mb1-bct-reset-p3668-0001-a00.cfg 
+[   5.0767 ] Added Platform Config 3 data with size :- 92
+[   5.0768 ] 
+[   5.0768 ] Parsing config file :tegra19x-mb1-prod-p3668-0001-a00.cfg 
+[   5.0768 ] Added Platform Config 5 data with size :- 128
+[   5.0768 ] 
+[   5.0768 ] Parsing config file :tegra194-mb1-bct-gpioint-p3668-0001-a00.cfg 
+[   5.0768 ] Added Platform Config 7 data with size :- 392
+[   5.0768 ] 
+[   5.0768 ] Parsing config file :tegra19x-mb1-bct-device-qspi-p3668.cfg 
+[   5.0768 ] Added Platform Config 9 data with size :- 40
+[   5.0768 ] 
+[   5.0768 ] Updating mb1-bct with firmware information
+[   5.0776 ] tegrabct_v2 --chip 0x19 --mb1bct mb1_bct_MB1.bct --updatefwinfo flash.xml.bin
+[   5.0781 ] MB1-BCT version: 0x1
+[   5.0784 ] 
+[   5.0784 ] Updating mb1-bct with storage information
+[   5.0791 ] tegrabct_v2 --chip 0x19 --mb1bct mb1_bct_MB1.bct --updatestorageinfo flash.xml.bin
+[   5.0797 ] MB1-BCT version: 0x1
+[   5.0800 ] 
+[   5.0806 ] tegrahost_v2 --chip 0x19 --align mb1_bct_MB1.bct
+[   5.0812 ] 
+[   5.0818 ] tegrahost_v2 --chip 0x19 0 --magicid MBCT --appendsigheader mb1_bct_MB1.bct zerosbk
+[   5.0824 ] adding BCH for mb1_bct_MB1.bct
+[   5.0833 ] 
+[   5.0843 ] tegrasign_v2 --key None --list mb1_bct_MB1_sigheader.bct_list.xml --pubkeyhash pub_key.key
+[   5.0851 ] Assuming zero filled SBK key
+[   5.0853 ] 
+[   5.0860 ] tegrahost_v2 --chip 0x19 0 --updatesigheader mb1_bct_MB1_sigheader.bct.encrypt mb1_bct_MB1_sigheader.bct.hash zerosbk
+[   5.0870 ] 
+[   5.0870 ] Generating coldboot mem-bct
+[   5.0876 ] tegrabct_v2 --chip 0x19 0 --sdram /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/25624/tmpi4s9jg7m1.cfg --membct /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/25624/tmpi4s9jg7m1_1.bct /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/25624/tmpi4s9jg7m1_2.bct /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/25624/tmpi4s9jg7m1_3.bct /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/25624/tmpi4s9jg7m1_4.bct
+[   5.0881 ] Packing sdram param for instance[0]
+[   5.1175 ] Packing sdram param for instance[1]
+[   5.1176 ] Packing sdram param for instance[2]
+[   5.1178 ] Packing sdram param for instance[3]
+[   5.1179 ] Packing sdram param for instance[4]
+[   5.1179 ] Packing sdram param for instance[5]
+[   5.1179 ] Packing sdram param for instance[6]
+[   5.1179 ] Packing sdram param for instance[7]
+[   5.1179 ] Packing sdram param for instance[8]
+[   5.1179 ] Packing sdram param for instance[9]
+[   5.1179 ] Packing sdram param for instance[10]
+[   5.1179 ] Packing sdram param for instance[11]
+[   5.1179 ] Packing sdram param for instance[12]
+[   5.1179 ] Packing sdram param for instance[13]
+[   5.1179 ] Packing sdram param for instance[14]
+[   5.1179 ] Packing sdram param for instance[15]
+[   5.1179 ] 
+[   5.1179 ] Getting sector size from pt
+[   5.1197 ] tegraparser_v2 --getsectorsize flash.xml.bin sector_info.bin
+[   5.1220 ] 
+[   5.1220 ] BlockSize read from layout is 200
+
+[   5.1226 ] tegrahost_v2 --chip 0x19 0 --blocksize 512 --magicid MEMB --addsigheader_multi /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/25624/tmpi4s9jg7m1_1.bct /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/25624/tmpi4s9jg7m1_2.bct /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/25624/tmpi4s9jg7m1_3.bct /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/25624/tmpi4s9jg7m1_4.bct
+[   5.1232 ] adding BCH for /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/25624/tmpi4s9jg7m1_1.bct
+[   5.1254 ] 
+[   5.1261 ] tegrahost_v2 --chip 0x19 --align mem_coldboot.bct
+[   5.1268 ] 
+[   5.1274 ] tegrahost_v2 --chip 0x19 0 --magicid MEMB --appendsigheader mem_coldboot.bct zerosbk
+[   5.1279 ] Header already present for mem_coldboot.bct
+[   5.1281 ] 
+[   5.1290 ] tegrasign_v2 --key None --list mem_coldboot_sigheader.bct_list.xml --pubkeyhash pub_key.key
+[   5.1296 ] Assuming zero filled SBK key
+[   5.1303 ] 
+[   5.1311 ] tegrahost_v2 --chip 0x19 0 --updatesigheader mem_coldboot_sigheader.bct.encrypt mem_coldboot_sigheader.bct.hash zerosbk
+[   5.1320 ] 
+[   5.1320 ] Generating recovery mem-bct
+[   5.1329 ] tegrabct_v2 --chip 0x19 0 --sdram /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/25624/tmpi4s9jg7m1.cfg --membct /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/25624/tmpi4s9jg7m1_1.bct /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/25624/tmpi4s9jg7m1_2.bct /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/25624/tmpi4s9jg7m1_3.bct /home/azer/JetPack_4.5.1_Linux_JETSON_XAVIER_NX/Linux_for_Tegra/bootloader/25624/tmpi4s9jg7m1_4.bct
+[   5.1334 ] Packing sdram param for instance[0]
+[   5.1621 ] Packing sdram param for instance[1]
+[   5.1622 ] Packing sdram param for instance[2]
+[   5.1624 ] Packing sdram param for instance[3]
+[   5.1626 ] Packing sdram param for instance[4]
+[   5.1626 ] Packing sdram param for instance[5]
+[   5.1626 ] Packing sdram param for instance[6]
+[   5.1626 ] Packing sdram param for instance[7]
+[   5.1626 ] Packing sdram param for instance[8]
+[   5.1626 ] Packing sdram param for instance[9]
+[   5.1626 ] Packing sdram param for instance[10]
+[   5.1626 ] Packing sdram param for instance[11]
+[   5.1626 ] Packing sdram param for instance[12]
+[   5.1626 ] Packing sdram param for instance[13]
+[   5.1626 ] Packing sdram param for instance[14]
+[   5.1626 ] Packing sdram param for instance[15]
+[   5.1626 ] 
+[   5.1628 ] Reading ramcode from backup chip_info.bin file
+[   5.1631 ] RAMCODE Read from Device: 2
+
+[   5.1632 ] Generating BPMP dtb for ramcode - 0
+[   5.2196 ] Old BPMP dtb size - 223168 bytes
+[   5.2196 ] New BPMP dtb size - 168338 bytes
+[   5.2197 ] 
+[   5.2214 ] tegrahost_v2 --chip 0x19 --align mem_rcm.bct
+[   5.2223 ] 
+[   5.2230 ] tegrahost_v2 --chip 0x19 0 --magicid MEMB --appendsigheader mem_rcm.bct zerosbk
+[   5.2235 ] adding BCH for mem_rcm.bct
+[   5.2246 ] 
+[   5.2253 ] tegrasign_v2 --key None --list mem_rcm_sigheader.bct_list.xml --pubkeyhash pub_key.key
+[   5.2258 ] Assuming zero filled SBK key
+[   5.2261 ] 
+[   5.2268 ] tegrahost_v2 --chip 0x19 0 --updatesigheader mem_rcm_sigheader.bct.encrypt mem_rcm_sigheader.bct.hash zerosbk
+[   5.2279 ] 
+[   5.2280 ] Copying signatures
+[   5.2289 ] tegrahost_v2 --chip 0x19 0 --partitionlayout flash.xml.bin --updatesig images_list_signed.xml
+[   8.7762 ] 
+[   8.7857 ] Boot Rom communication
+[   8.8070 ] tegrarcm_v2 --chip 0x19 0 --rcm rcm_list_signed.xml
+[   8.8077 ] BR_CID: 0x88021911643171840000000017fd8180
+[   8.8449 ] RCM version 0X190001
+[   8.8907 ] Boot Rom communication completed
+[   9.9195 ] 
+[  10.9358 ] tegrarcm_v2 --isapplet
+[  10.9370 ] Applet version 01.00.0000
+[  11.0111 ] 
+[  11.0112 ] Sending BCTs
+[  11.0133 ] tegrarcm_v2 --download bct_bootrom br_bct_BR.bct --download bct_mb1 mb1_bct_MB1_sigheader.bct.encrypt --download bct_mem mem_rcm_sigheader.bct.encrypt
+[  11.0149 ] Applet version 01.00.0000
+[  11.0629 ] Sending bct_bootrom
+[  11.0630 ] [................................................] 100%
+[  11.0654 ] Sending bct_mb1
+[  11.0705 ] [................................................] 100%
+[  11.0746 ] Sending bct_mem
+[  11.1251 ] [................................................] 100%
+[  11.1317 ] 0000000000000102: E> NONE: Invalid value MemBct dram size: 0MB for slot: 2.
+[  11.1486 ] 
+[  11.1486 ] 
+Error: Return value 2
+Command tegrarcm_v2 --download bct_bootrom br_bct_BR.bct --download bct_mb1 mb1_bct_MB1_sigheader.bct.encrypt --download bct_mem mem_rcm_sigheader.bct.encrypt
+Failed flashing t186ref.
